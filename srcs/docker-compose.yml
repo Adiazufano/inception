@@ -1,0 +1,6 @@
+services:
+  mariadb:
+    build: ./requirements/mariadb
+    environment:
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_DATA_DIR=${MARIADB_DATA_DIR}
