@@ -1,6 +1,35 @@
+networks:
+  inception_net:
+    driver: bridge
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
 services:
   mariadb:
     build: ./requirements/mariadb
     environment:
       - MARIADB_USER=${MARIADB_USER}
       - MARIADB_DATA_DIR=${MARIADB_DATA_DIR}
+      - SQL_USER=${SQL_USER}
+      - SQL_DATABASE=${SQL_DATABASE}
+    secrets:
+      - db_password
+    networks:
+      - inception_net
+    volumes:
+      - db_data:/var/lib/mysql
+  wordpress:
+    build: ./requirements/wordpress
+    environment:
+      - WORDPRESS_DATA_DIR=${WORDPRESS_DATA_DIR}
+      - SQL_DATABASE=${SQL_DATABASE}
+      - SQL_USER=${SQL_USER}
+    secrets:
+      - db_password
+    networks:
+      - inception_net
+    volumes:
+      - wp_data:/var/www/wordpress
+volumes:
+  db_data:
+  wp_data:
