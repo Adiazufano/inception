@@ -5,6 +5,14 @@ secrets:
   db_password:
     file: ../secrets/db_password.txt
 services:
+  nginx:
+    build: ./requirements/nginx
+    depends_on:
+      - wordpress
+    networks:
+      - inception_net
+    ports:
+      - "443:443"
   mariadb:
     build: ./requirements/mariadb
     environment:

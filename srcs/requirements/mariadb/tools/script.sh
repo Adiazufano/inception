@@ -15,7 +15,7 @@ if [ ! -f "$MARIADB_DATA_DIR/ibdata1" ]; then
 			sleep 1
 		done
 		mariadb -e "CREATE DATABASE $SQL_DATABASE"
-		mariadb -e "CREATE USER '$SQL_USER'@localhost IDENTIFIED BY '$SQL_PASSWORDx'"
+		mariadb -e "CREATE USER '$SQL_USER'@localhost IDENTIFIED BY '$SQL_PASSWORD'"
 		mariadb -e "GRANT ALL PRIVILEGES ON inception.* TO '$SQL_USER'@'localhost'"
 		mariadb -e "FLUSH PRIVILEGES"
 		mariadb-admin shutdown
