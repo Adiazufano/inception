@@ -6,6 +6,10 @@ secrets:
     file: ../secrets/db_password.txt
   wp_admin_password:
     file: ../secrets/wp_admin_password.txt
+  db_root_password:
+    file: ../secrets/db_root_password.txt
+  wp_password:
+    file: ../secrets/wp_password.txt
 services:
   nginx:
     container_name: nginx
@@ -24,12 +28,11 @@ services:
     build: ./requirements/mariadb
     image: mariadb
     environment:
-      - MARIADB_USER=${MARIADB_USER}
-      - MARIADB_DATA_DIR=${MARIADB_DATA_DIR}
       - SQL_USER=${SQL_USER}
       - SQL_DATABASE=${SQL_DATABASE}
     secrets:
       - db_password
+      - db_root_password
     networks:
       - inception_net
     volumes:
@@ -41,13 +44,14 @@ services:
     build: ./requirements/wordpress
     image: wordpress
     environment:
-      - WORDPRESS_DATA_DIR=${WORDPRESS_DATA_DIR}
       - SQL_DATABASE=${SQL_DATABASE}
       - SQL_USER=${SQL_USER}
       - SQL_HOST=mariadb
+      - WP_USER=${WP_USER}
     secrets:
       - db_password
       - wp_admin_password
+      - wp_password
     networks:
       - inception_net
     volumes:

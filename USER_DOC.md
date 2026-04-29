@@ -20,7 +20,7 @@
 
 * **Preliminary step:**
 
-    Go to the etc directory and modify the hosts file, adding 127.0.0 and your_login-42.fr. Without this, you won't be able to log in.
+    Go to the etc directory and modify the hosts file, adding 127.0.0.1 and your_login-42.fr. Without this, you won't be able to log in.
 
 * **Navigation:** 
 
@@ -40,10 +40,6 @@ and passwords are stored in different .txt files within the secrets folder locat
 * **user data list (.env):**
 
     * MARIADB_USER = mysql
-
-    * MARAIDB_DATA_DIR=/var/lib/mysql
-
-    * WORDPRESS_DATA_DIR=/var/www/wordpress
 
     * SQL_USER = whichever you prefer
 
